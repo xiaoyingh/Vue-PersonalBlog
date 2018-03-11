@@ -1,9 +1,12 @@
 <template>
   <div v-theme:column="'narrow'" id="show-blog">
     <h1>博客总览</h1>
-    <div v-for="blog in blogs" class="single-blog">
-      <h2 v-rainbow>{{blog.title}}</h2>
-      <article>{{blog.body}}</article>
+    <input type="text" v-model="search" placeholder="search 搜索">
+    <div v-for="blog in filteredBlogs" class="single-blog">
+      <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
+      <article>
+        {{blog.body | snippet}}
+      </article>
     </div>
   </div>
 </template>
@@ -13,7 +16,8 @@
     name: 'show-blog',
     data() {
       return {
-         blogs: []
+        blogs: [],
+        search: ""
       }
     },
     created(){
@@ -23,6 +27,13 @@
               this.blogs = data.body.slice(0,10);
             console.log(this.blogs);
         });
+    },
+    computed:{
+        filteredBlogs:function(){
+            return this.blogs.filter((blog)=>{
+                return blog.title.match(this.search);
+            })
+        }
     }
 
   }
