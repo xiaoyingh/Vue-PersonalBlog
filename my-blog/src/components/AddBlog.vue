@@ -63,6 +63,7 @@ export default {
   },
   methods:{
       post:function(){
+          //提交博客的标题 内容
           this.$http.post("http://jsonplaceholder.typicode.com/posts.json",{
             title: this.blog.title,
             body: this.blog.content,
