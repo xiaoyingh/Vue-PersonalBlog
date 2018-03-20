@@ -1,6 +1,6 @@
 <template>
-  <div id="add-blog">
-    <h2>添加博客</h2>
+  <div id="edit-blog">
+    <h2>编辑博客</h2>
     <form v-if="!submmited">
 
       <label for="">博客标题</label>
@@ -47,46 +47,46 @@
 </template>
 
 <script>
-export default {
-  name: 'add-blog',
-  data() {
-    return {
-      blog: {
-        title: "",
-        content: "",
-        categories: [],
-        author: ""
-      },
-      authors: ["Hemiah","miss wu","miss zhang","Bucky"],
-      submmited: false
-    }
-  },
-  methods:{
-      post:function(){
-          //提交博客的标题 内容
-          this.$http.post("https://wd4016340257unixuz.wilddogio.com/posts.json",{
-            title: this.blog.title,
-            content: this.blog.content,
-            categories: this.blog.categories,
-            author: this.blog.author
-          }).then(function(data){
-             console.log(data);
-             this.submmited = true
-          });
+  export default {
+    name: 'edit-blog',
+    data() {
+      return {
+        blog: {
+          title: "",
+          content: "",
+          categories: [],
+          author: ""
+        },
+        authors: ["Hemiah","miss wu","miss zhang","Bucky"],
+        submmited: false
       }
+    },
+    methods:{
+      post:function(){
+        //提交博客的标题 内容
+        this.$http.post("https://wd4016340257unixuz.wilddogio.com/posts.json",{
+          title: this.blog.title,
+          body: this.blog.content,
+          categories: this.blog.categories,
+          author: this.blog.author
+        }).then(function(data){
+          console.log(data);
+          this.submmited = true
+        });
+      }
+    }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  #add-blog{
+  #edit-blog{
     margin: 20px auto;
     max-width:600px;
     padding: 20px;
   }
-  #add-blog *{
+  #edit-blog *{
     box-sizing: border-box;
   }
   label{
@@ -133,3 +133,4 @@ export default {
     border-bottom:2px solid #333;
   }
 </style>
+

@@ -3,9 +3,12 @@
     <h1>博客总览</h1>
     <input type="text" v-model="search" placeholder="search 搜索">
     <div v-for="blog in filteredBlogs" class="single-blog">
-      <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
+      <router-link v-bind:to="'/blog/'+blog.id">
+        <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
+      </router-link>
       <article>
-        {{blog.body | snippet}}
+        <!--{{blog.content | snippet}}-->
+        {{blog.content}}
       </article>
     </div>
   </div>
@@ -21,12 +24,23 @@
       }
     },
     created(){
-        this.$http.get("../../static/posts.json")
+        this.$http.get("https://wd4016340257unixuz.wilddogio.com/posts.json")
           .then(function(data){
-            //console.log(data);
-              this.blogs = data.body.slice(0,10);
-            console.log(this.blogs);
-        });
+            //console.log(data.json());
+            return data.json();
+        })
+          .then(function(data){
+            var blogsArray = [];
+             for(let key in data){
+                //console.log(key);
+               //console.log(data[key]);
+               data[key].id = key;
+               //console.log(data[key]);
+               blogsArray.push(data[key]);
+             }
+             //console.log(blogsArray);
+            this.blogs = blogsArray;
+          })
     },
     computed:{
         filteredBlogs:function(){
@@ -44,8 +58,8 @@
         return value.toUpperCase();
       },
       "snippet":function(value){
-        return value.slice(0,100) + "...";
-      },
+        //return value.slice(0,10) + "...";
+      }
 
     },
     //自定义 指令
@@ -86,5 +100,8 @@
     box-sizing: border-box;
     background: #eee;
   }
-
+  a{
+    display: block;
+    text-decoration: none;
+  }
 </style>
