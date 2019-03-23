@@ -1,7 +1,10 @@
 <template>
   <div v-theme:column="'narrow'" id="show-blog">
-    <h1>博客总览</h1>
-    <input type="text" v-model="search" placeholder="search 搜索">
+    <div class="blogNav">
+      <a href="">全部</a>
+      <a href="">热门</a>
+      <input type="text" v-model="search" placeholder="search 搜索">
+    </div>
     <div v-for="blog in filteredBlogs" class="single-blog">
       <router-link v-bind:to="'/blog/'+blog.id">
         <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
@@ -78,7 +81,7 @@
           }
 
           if(binding.arg == 'column'){
-            el.style.background = "#6677cc";
+            el.style.background = "#fff";
             el.style.padding = '20px';
           }
         }
@@ -91,9 +94,38 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #show-blog{
-    max-width:800px;
+    width:560px;
     margin: 0 auto;
+    background: #fff;
+    float: right;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
   }
+  .blogNav{
+    width: 100%;
+    height: 38px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    background-color: #f2f2f5;
+  }
+  .blogNav a{
+    float: left;
+    padding: 0 30px;
+    line-height: 36px;
+  }
+  .blogNav a.blogNavActive{
+    background: #fff;
+    border-bottom: 2px solid #f7691d;
+  }
+  .blogNav input{
+    float: right;
+    width: 200px;
+    height: 24px;
+    padding: 0 46px 0 10px;
+    color: #333;
+    margin-top: 5px;
+    margin-right: 5px;
+   }
   .single-blog{
     padding: 20px;
     margin: 20px 0;

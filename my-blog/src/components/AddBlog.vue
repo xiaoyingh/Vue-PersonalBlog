@@ -85,6 +85,9 @@ export default {
     margin: 20px auto;
     max-width:600px;
     padding: 20px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
   }
   #add-blog *{
     box-sizing: border-box;

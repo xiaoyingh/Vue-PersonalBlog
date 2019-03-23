@@ -51,7 +51,6 @@
          this.$router.push({path: '/'})
 
          })
-
       }
     }
   }

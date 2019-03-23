@@ -2,7 +2,8 @@
   <nav id="blog-header">
     <ul>
       <li>
-        <router-link to="/" exact>博客</router-link>
+        <router-link to="/" exact>主页</router-link>
+        <router-link to="/photo" exact>相册</router-link>
         <router-link to="/add" exact>写博客</router-link>
       </li>
     </ul>
@@ -17,9 +18,9 @@
 
 <style scoped>
   #blog-header{
-    background: crimson;
-    padding: 30px 0;
-    margin-bottom:40px;
+    padding: 10px 0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    background: #fff;
   }
   ul{
     list-style-type: none;
@@ -31,13 +32,12 @@
     margin: 0 10px;
   }
   a{
-    color: #fff;
-    padding: 10px;
+    color: #333;
+    padding: 9px;
     text-decoration: none;
-    border-radius: 5px;
+    margin: 0 50px;
   }
   .router-link-active{
-    background: rgba(255,255,255,0.5);
-    color: #444
+    border-bottom: 2px solid #f7691d;
   }
 </style>
